@@ -1,0 +1,38 @@
+type  Product {
+
+
+    id : ID!
+    name: String!
+    description: String!
+    price: Float
+    category: String!
+
+}
+
+type Storage {
+
+    storage_id: ID!
+    name: String!
+    address: String!
+}
+
+type Inventory {
+
+    inventory_id: ID!
+    product: Product!
+    storage: Storage!
+}
+
+
+
+type Query {
+
+    searchInventoryByStorage (storage_id: ID!): [Inventory]
+}
+
+type Mutation {
+
+    registerProduct (name : String!, description: String!
+    price: Float, category: String!, storage_id: ID!, inventory_id: ID!): Product
+
+}
