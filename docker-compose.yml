@@ -1,18 +1,17 @@
+version: '3.8'
 services:
   mysql:
-    image: mysql:8.0.12
+    image: mysql:8.0
     container_name: mysql_container
     environment:
-      MYSQL_DATABASE: 'parcial'
-      MYSQL_USER: 'root'
+      MYSQL_DATABASE: parcial
+      MYSQL_ROOT_PASSWORD: 12345
+
     ports:
       - '3306:3306'
-    expose:
-      - '3306'
 
     volumes:
       - my-db:/var/lib/mysql
-
 
   parcial:
     build: .
@@ -20,11 +19,13 @@ services:
       - "8080:8080"
     depends_on:
       mysql:
-        condition: service_healthy
+        condition: service_started
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/parcial
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/parcial
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQLDialect
+      SPRING_DATASOURCE_PASSWORD: 12345
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL57Dialect
+
 
 volumes:
-  mysql_data:
+  my-db:

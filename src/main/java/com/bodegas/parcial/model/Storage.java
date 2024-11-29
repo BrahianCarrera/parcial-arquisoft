@@ -17,10 +17,10 @@ public class Storage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long storage_id;
     private String name;
     private String address;
 
-    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "storage", cascade = CascadeType.ALL)
     private List<Inventory> inventories;
 }

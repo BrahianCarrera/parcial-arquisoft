@@ -1,6 +1,5 @@
 package com.bodegas.parcial.service;
 
-
 import com.bodegas.parcial.model.Product;
 import com.bodegas.parcial.repository.ProductRepository;
 import lombok.AllArgsConstructor;
@@ -16,15 +15,10 @@ public class ProductService {
 
     private final StorageService storageService;
 
-
     public Product registerProduct(String name, String description, double price, String category) {
 
-        var product = Product.builder()
-        .name(name)
-        .description(description)
-        .price(price)
-        .category(category)
-        .build();
+        Product product = new Product(name, description, price, category);
         return productRepository.save(product);
     }
 }
+

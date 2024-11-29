@@ -1,7 +1,5 @@
 type  Product {
-
-
-    id : ID!
+    product_id : ID!
     name: String!
     description: String!
     price: Float
@@ -21,6 +19,7 @@ type Inventory {
     inventory_id: ID!
     product: Product!
     storage: Storage!
+    quantity: Int!
 }
 
 
@@ -33,6 +32,6 @@ type Query {
 type Mutation {
 
     registerProduct (name : String!, description: String!
-    price: Float, category: String!, storage_id: ID!, inventory_id: ID!): Product
+    price: Float, category: String!, storage_id: ID!, quantity:Int!): Inventory
 
 }

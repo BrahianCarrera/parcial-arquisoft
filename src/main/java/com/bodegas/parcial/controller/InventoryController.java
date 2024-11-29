@@ -30,7 +30,13 @@ public class InventoryController {
     }
 
     @MutationMapping
-    public Inventory registerProduct(@Argument long storage_id, @Argument int quantity, @Argument Product product){
+    public Inventory registerProduct(@Argument long storage_id,
+                                     @Argument int quantity,
+                                     @Argument String name,
+                                     @Argument double price,
+                                     @Argument String description,
+                                     @Argument String category ) {
+        Product product = productService.registerProduct(name,description,  price, category);
         Inventory inventory = new Inventory(quantity, product, storageService.searchStorageByID(storage_id));
         return inventoryService.createInventory(inventory);
     }
